@@ -1,0 +1,22 @@
+name: Docker Build
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - feature/*
+  release:
+    types: [published, created, edited]
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag proto:$(date +%s)
