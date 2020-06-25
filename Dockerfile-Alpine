@@ -1,0 +1,10 @@
+from python:3.8.3-alpine3.12
+
+RUN pip install protobuf
+
+WORKDIR /app
+COPY addressbook.proto .
+COPY addressbook_pb2.py .
+COPY test.py .
+
+CMD ["python3","test.py"]

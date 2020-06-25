@@ -1,0 +1,29 @@
+syntax = "proto2";
+
+package io.slacklife.user;
+
+message User{
+  required string id = 1;
+  required string name = 2;
+  required string email = 3;
+  required Gender gender = 4 [default = UNSPECIFIED];
+//  repeated PhoneNumber contactNumbers = 5;
+}
+
+//message PhoneNumber {
+//  required PhoneType type = 1 [default = MOBILE];
+//  required int32 number = 2;
+//  required int32 countryCode = 3;
+//}
+//
+//enum PhoneType {
+//  MOBILE = 0;
+//  HOME = 1;
+//  WORK = 2;
+//}
+
+enum Gender {
+  MALE = 0;
+  FEMALE = 1;
+  UNSPECIFIED = 3;
+}
