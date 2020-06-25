@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, Response
 
-from src.io.slacklife.extensions import redis_service
-from src.io.slacklife.models.user.user_pb2 import User, Gender
+from app.io.slacklife.extensions import redis_service
+from app.io.slacklife.models.user.user_pb2 import User, Gender
 
 user_bp = Blueprint('User', __name__)
 

@@ -3,8 +3,8 @@ import os
 
 from flask import Flask
 
-from src.io.slacklife.blueprints.user_blueprint import user_bp
-from src.io.slacklife.extensions import redis_service
+from app.io.slacklife.blueprints.user_blueprint import user_bp
+from app.io.slacklife.extensions import redis_service
 
 
 class ManageApp():

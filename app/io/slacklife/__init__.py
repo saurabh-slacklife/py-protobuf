@@ -1,4 +1,4 @@
-from src.io.slacklife.app import ManageApp
+from app.io.slacklife.app import ManageApp
 
 app = ManageApp()
 logger = app.logger

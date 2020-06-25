@@ -1,13 +1,43 @@
-from ubuntu-proto
+## Author Saurabh Saxena
 
-ENV DEBIAN_FRONTEND=noninteractive
+FROM python:3.8.2-alpine3.11
 
-RUN apt install python3 python3-pip -y
-RUN pip3 install protobuf
+LABEL maintainer = "saurabh.salcklife.io@gmail.com"
 
-WORKDIR /app
-COPY addressbook.proto .
-COPY addressbook_pb2.py .
-COPY test.py .
+LABEL vendor = "Simba"
 
-CMD ["python3","test.py"]
+RUN apk --no-cache add \
+     bash \
+     build-base \
+     gcc
+
+# set environment variables
+ENV APP_HOME=/usr/src/app/
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+# SET Python specific ENV vars
+ENV PYTHONFAULTHANDLER=1 \
+  PYTHONUNBUFFERED=1 \
+  PYTHONHASHSEED=random \
+  PIPENV_HIDE_EMOJIS=true \
+  PIPENV_COLORBLIND=true \
+  PIPENV_NOSPIN=true
+
+RUN mkdir -p ${APP_HOME} /var/log/proto
+
+# set work directory
+WORKDIR ${APP_HOME}
+
+COPY Pipfile .
+
+RUN pip install --upgrade pip \
+	&& pip install pipenv \
+	&& pipenv install \
+	&& pipenv install --deploy --system --ignore-pipfile
+
+COPY app .
+COPY scripts .
+
+EXPOSE 5000
+
+ENTRYPOINT scripts/start.sh
