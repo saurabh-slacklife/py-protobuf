@@ -8,8 +8,11 @@ user_bp = Blueprint('User', __name__)
 
 @user_bp.route('/', methods=['GET'])
 def get_user():
+    args = request.args
+    user_id = args.get('id')
+
     redis_connection = redis_service.get_redis
-    user_data = redis_connection.get(name='rgwrgedfgdfgrgeeg6677')
+    user_data = redis_connection.get(name=user_id)
     user = User()
     user.ParseFromString(user_data)
     return user_data
