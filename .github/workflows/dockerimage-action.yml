@@ -17,8 +17,8 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
     steps:
-      - uses: docker/build-push-action@v1
       - name: Build and pushes the Docker image
+        uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_LOGIN }}
           password: ${{ secrets.DOCKER_LOGIN_PS }}
