@@ -6,11 +6,6 @@ LABEL maintainer = "saurabh.salcklife.io@gmail.com"
 
 LABEL vendor = "Simba"
 
-RUN apk --no-cache add \
-     bash \
-     build-base \
-     gcc
-
 # set environment variables
 ENV APP_HOME=/usr/src/app/
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -28,16 +23,16 @@ RUN mkdir -p ${APP_HOME} /var/log/proto
 # set work directory
 WORKDIR ${APP_HOME}
 
+COPY Pipfile.lock .
 COPY Pipfile .
 
-RUN pip install --upgrade pip \
-	&& pip install pipenv \
-	&& pipenv install \
+RUN pip install pipenv \
 	&& pipenv install --deploy --system --ignore-pipfile
 
-COPY app .
-COPY scripts .
+COPY src/ .
+COPY scripts/ scripts/
+COPY dev.env .
 
 EXPOSE 5000
 
-ENTRYPOINT scripts/start.sh
+ENTRYPOINT ./scripts/start.sh

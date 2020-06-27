@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
   # Start Gunicorn processes
   echo "Starting Gunicorn."
   echo "Application log path: /var/log/proto/application.log"
