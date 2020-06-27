@@ -19,7 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag proto:$(date +%s)
+        run: docker build . --file Dockerfile --tag py-protobuf-example:$(date +%s)
       - name: Docker Login
         run: docker login -u ${{ secrets.DOCKER_LOGIN }} -p ${{ secrets.DOCKER_LOGIN_PS }}
       - name: Docker Push imge to repository
