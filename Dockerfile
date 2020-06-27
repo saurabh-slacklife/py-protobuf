@@ -31,7 +31,6 @@ RUN pip install pipenv \
 
 COPY src/ .
 COPY scripts/ scripts/
-COPY dev.env .
 
 EXPOSE 5000
 
