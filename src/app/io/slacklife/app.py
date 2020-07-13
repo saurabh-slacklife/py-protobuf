@@ -4,6 +4,7 @@ from flask import Flask
 
 from app.io import logger
 from app.io.slacklife.blueprints.user_blueprint import user_bp
+from app.io.slacklife.blueprints.health_blueprint import health_bp
 from app.io.slacklife.extensions import redis_service
 
 
@@ -25,6 +26,7 @@ class ManageApp():
 
     def register_blueprints(self):
         self.flask_app.register_blueprint(blueprint=user_bp, url_prefix='/user', options=self.flask_app.config)
+        self.flask_app.register_blueprint(blueprint=health_bp, url_prefix='/health', options=self.flask_app.config)
 
     def initialize_redis_service(self):
         logger.info(f'Initializing Redis')

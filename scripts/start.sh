@@ -8,7 +8,6 @@
   touch /var/log/proto/application.log
   touch /var/log/proto/error.log
   exec gunicorn --bind "0.0.0.0:5000" app.io.slacklife:flask_app \
-    --disable-redirect-access-to-syslog \
     --capture-output \
     --error-logfile /var/log/proto/error.log \
     --log-file /var/log/proto/application.log \
