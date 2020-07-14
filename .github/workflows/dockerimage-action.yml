@@ -28,6 +28,7 @@ jobs:
         run: docker tag py-protobuf-example:${GITHUB_SHA} saurabhsa/py-protobuf-example:latest
   push-docker-image:
     runs-on: ubuntu-latest
+    needs: build-docker-image
     steps:
       - uses: actions/checkout@v2
       - name: Docker Push imge to repository
