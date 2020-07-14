@@ -39,9 +39,9 @@ class ManageApp():
 
 
 class AppConfig:
-    ENV = os.environ.get('service_env', default='development')
-    REDIS_HOST = os.environ.get('redis_host', default='localhost')
-    REDIS_PORT = os.environ.get('redis_port', default=6379)
-    REDIS_P = os.environ.get('redis_p', default='')
+    ENV = os.environ.get('SERVICE_ENV', default='development')
+    REDIS_HOST = os.environ.get('REDIS_HOST', default='localhost')
+    REDIS_PORT = os.environ.get('REDIS_PORT', default=6379)
+    REDIS_P = os.environ.get('REDIS_P', default='')
     # SERVER_NAME = os.environ.get('SERVER_NAME')
     # MAX_CONTENT_LENGTH = os.environ.get('MAX_CONTENT_LENGTH')
